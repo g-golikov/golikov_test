@@ -7,7 +7,17 @@
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    /*"paths": {
+      "@src*": ["src*//*"],
+      "@app*//*": ["app*//*"],
+      "@entities*//*": ["entities*//*"],
+      "@features*//*": ["features*//*"],
+      "@pages*//*": ["pages*//*"],
+      "@processes*//*": ["processes*//*"],
+      "@shared*//*": ["shared*//*"],
+      "@widgets*//*": ["widgets*//*"]
+    }*/
   },
   "include": ["src"]
 }
