@@ -1,4 +1,4 @@
-import { ThemeProvider as MUIThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import { ThemeProvider as MUIThemeProvider, CssBaseline } from '@mui/material';
 import {FC, ReactNode} from 'react';
 import { theme } from './theme';
 
