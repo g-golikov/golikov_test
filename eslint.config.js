@@ -2,13 +2,22 @@ import js from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
+  // Игнор dist
   globalIgnores(['dist']),
+
+  // Базовые JS правила
   js.configs.recommended,
+
+  // React хуки и Vite refresh
   reactHooks.configs['recommended-latest'],
   reactRefresh.configs.vite,
+
+  // Для JavaScript и JSX файлов
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
@@ -25,8 +34,32 @@ export default defineConfig([
       'no-console': 'error',
     },
   },
+
+  // Для TypeScript и TSX файлов
   {
-    files: ['**/*.test.{js,jsx}'],
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        sourceType: 'module',
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+      },
+      globals: globals.browser,
+    },
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+    },
+    rules: {
+      ...tsPlugin.configs.recommended.rules,
+      'no-console': 'error',
+      '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+    },
+  },
+
+  // Для тестовых файлов
+  {
+    files: ['**/*.test.{js,jsx,ts,tsx}'],
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -41,6 +74,8 @@ export default defineConfig([
       },
     },
   },
+
+  // Для Node-скриптов
   {
     files: ['check-node-version.js'],
     languageOptions: {
