@@ -41,4 +41,18 @@ export default defineConfig([
       },
     },
   },
+  {
+    files: ['check-node-version.js'],
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+        console: 'readonly',
+      },
+      sourceType: 'script',
+    },
+    rules: {
+      'no-console': 'off',
+      'no-undef': 'off',
+    },
+  },
 ]);

@@ -24,11 +24,15 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "preview": "vite preview",
+    "preinstall": "node check-node-version.js",
     "prepare": "husky install",
     "release": "standard-version",
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
     "release:patch": "standard-version --release-as patch"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   },
   "dependencies": {
     "react": "^19.1.0",
