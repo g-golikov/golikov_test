@@ -1,1 +1,15 @@
-echo "Pre-push hook passed!"
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🔎 Checking for test files..."
+test_count=$(find ./src -type f -name "*.test.*" | wc -l)
+
+if [ "$test_count" -eq 0 ]; then
+  echo "❌ No test files found. Aborting push."
+  exit 1
+fi
+
+echo "✅ Found $test_count test files."
+
+echo "🔎 Running tests..."
+npm run test
