@@ -6,7 +6,13 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "prettier --write",
-      "eslint --fix"
+      "eslint --fix",
+      "git add"
+    ],
+    "*.css": [
+      "prettier --write",
+      "stylelint --fix",
+      "git add"
     ]
   },
   "scripts": {
@@ -26,6 +32,8 @@
     "react-reconciler": "^0.32.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@eslint/js": "^9.29.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
